@@ -1,0 +1,41 @@
+//plugins {
+//    id 'java'
+//}
+
+buildscript {
+    ext { // 전역변수 설정
+        springBootVersion = '2.1.9.RELEASE'
+    }
+    repositories { // 원격 저장소 설정
+        mavenCentral() // 기본적으로 많이 사용
+        jcenter() // 라이브러리 업로드 난이도 때문에 이것도 많이 사용
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.hitormiDownloader.spring'
+version '1.0-SNAPSHOT'
+
+repositories { // 원격 저장소 설정
+    mavenCentral() // 기본적으로 많이 사용
+    jcenter() // 라이브러리 업로드 난이도 때문에 이것도 많이 사용
+
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+test {
+    useJUnitPlatform()
+}
