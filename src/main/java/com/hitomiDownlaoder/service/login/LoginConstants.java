@@ -7,5 +7,5 @@ public class LoginConstants {
 
     public static String CLIENT_ID = "368501d4cd35eea4e16de4d85106a98c";
 
-    public static String REDIRECT_URL = "http://localhost:8081/login/kakao";
+    public static String REDIRECT_URL = "http://localhost:3000/login/kakao";
 }
