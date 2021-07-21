@@ -16,7 +16,8 @@ import java.util.Map;
 @Service
 public class LoginServiceImpl implements LoginService {
 
-    public String getAccessToken (String authorize_code) {
+    @Override
+    public String getAccessToken (String authorizeCode) {
         String access_Token = "";
         String refresh_Token = "";
         String reqURL = LoginConstants.KAKAO_TOKEN_URL;
@@ -38,7 +39,7 @@ public class LoginServiceImpl implements LoginService {
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=" + LoginConstants.CLIENT_ID);  //본인이 발급받은 key
             sb.append("&redirect_uri=" + LoginConstants.REDIRECT_URL);     // 본인이 설정해 놓은 경로
-            sb.append("&code=" + authorize_code);
+            sb.append("&code=" + authorizeCode);
             bw.write(sb.toString());
             bw.flush();
 

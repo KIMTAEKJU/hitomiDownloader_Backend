@@ -1,6 +1,7 @@
 package com.hitomiDownlaoder.controller;
 
 import com.hitomiDownlaoder.service.login.LoginServiceImpl;
+import com.hitomiDownlaoder.service.userInfo.UserInfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +16,14 @@ public class LoginController {
     @Autowired
     private LoginServiceImpl loginService;
 
-    @GetMapping(value = "/login")
-    @ResponseBody
-    public String login(String code){
-        System.out.println(code);
+    @Autowired
+    private UserInfoServiceImpl userInfoService;
 
-        loginService.getAccessToken(code);
-        return "";
+    @GetMapping(value = "/login/kakao")
+    @ResponseBody
+    public Map<String, Object> loginKaKao(String code){
+        System.out.println("code: " + code);
+        String accessToken = loginService.getAccessToken(code);
+        return userInfoService.getUserInfo(accessToken);
     }
 }
